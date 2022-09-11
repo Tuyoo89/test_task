@@ -1,0 +1,8 @@
+
+
+You need to first run docker-compose, then app
+I`ve configure swagger3, so you can add data by this url "localhost:8080/swagger-ui"
+Some methods in swagger are not working, they were added for structure, however, the ones that are mentioned
+mentioned in the task work
+
+Btw, pgadmin is also configured, u can reach it by following url "localhost:5050"
