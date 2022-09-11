@@ -1,8 +1,6 @@
 package com.example.testTask.mapper.user;
 
-import com.example.testTask.dto.chat.ChatDto;
 import com.example.testTask.dto.user.UserDto;
-import com.example.testTask.entity.chat.Chat;
 import com.example.testTask.entity.user.User;
 import com.example.testTask.mapper.base.GenericDtoMapper;
 import com.example.testTask.mapper.base.GenericEntityMapper;

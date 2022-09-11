@@ -1,8 +1,8 @@
 package com.example.testTask.entity.chat;
 
+import com.example.testTask.entity.base.AuditableEntity;
 import com.example.testTask.entity.message.Message;
 import com.example.testTask.entity.user.User;
-import com.example.testTask.entity.base.AuditableEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +24,7 @@ public class Chat extends AuditableEntity {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "chat_users",
             joinColumns = @JoinColumn(name = "chat_id", referencedColumnName = "id"),
@@ -32,7 +32,7 @@ public class Chat extends AuditableEntity {
     )
     private List<User> users;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "chatId")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "chat")
     @JsonIgnore
     private List<Message> messageList;
 

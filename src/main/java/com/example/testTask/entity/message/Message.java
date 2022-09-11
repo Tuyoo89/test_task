@@ -22,7 +22,7 @@ public class Message extends AuditableEntity {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "chat_id")
-    private Chat chatId;
+    private Chat chat;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "author")

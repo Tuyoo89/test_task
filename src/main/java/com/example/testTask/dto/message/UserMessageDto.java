@@ -7,12 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class UserMessageDto implements BaseDto {
+    @NotNull
     private Long chatId;
+    @NotNull
     private Long author;
     private MessageType contentType;
     private String content;

@@ -3,11 +3,11 @@ package com.example.testTask.controller.chat;
 import com.example.testTask.controller.base.AbstractController;
 import com.example.testTask.controller.base.GenericCRUDController;
 import com.example.testTask.controller.base.GenericGLController;
+import com.example.testTask.dto.chat.ChatCreateDto;
 import com.example.testTask.dto.chat.ChatDto;
+import com.example.testTask.dto.message.MessageDto;
 import com.example.testTask.serivce.chat.ChatService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,5 +44,15 @@ public class ChatController extends AbstractController<ChatService>
     @Override
     public List<ChatDto> list() {
         return null;
+    }
+
+    @PostMapping("create/users/chat")
+    public Long createUsersChat(@RequestBody ChatCreateDto chatCreateDto){
+        return service.createUsersChat(chatCreateDto);
+    }
+
+    @GetMapping("get/chat/messages/{id}")
+    public List<MessageDto> getChatMessages(@PathVariable Long id){
+        return service.getChatMessages(id);
     }
 }
