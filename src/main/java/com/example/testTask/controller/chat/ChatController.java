@@ -7,6 +7,7 @@ import com.example.testTask.dto.chat.ChatCreateDto;
 import com.example.testTask.dto.chat.ChatDto;
 import com.example.testTask.dto.message.MessageDto;
 import com.example.testTask.serivce.chat.ChatService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class ChatController extends AbstractController<ChatService>
     }
 
     @Override
-    public Long create(ChatDto DTO) {
+    public ResponseEntity<Long> create(ChatDto DTO) {
         return null;
     }
 
@@ -52,7 +53,7 @@ public class ChatController extends AbstractController<ChatService>
     }
 
     @GetMapping("get/chat/messages/{id}")
-    public List<MessageDto> getChatMessages(@PathVariable Long id){
-        return service.getChatMessages(id);
+    public ResponseEntity<List<MessageDto>> getChatMessages(@PathVariable Long id){
+        return ResponseEntity.ok(service.getChatMessages(id));
     }
 }

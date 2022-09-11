@@ -3,6 +3,8 @@ package com.example.testTask.serivce.user;
 import com.example.testTask.dao.user.UserRepository;
 import com.example.testTask.dto.chat.ChatDto;
 import com.example.testTask.dto.user.UserDto;
+import com.example.testTask.entity.chat.Chat;
+import com.example.testTask.exception.custom_exception.NotFoundException;
 import com.example.testTask.mapper.chat.ChatMapper;
 import com.example.testTask.mapper.user.UserMapper;
 import com.example.testTask.serivce.base.AbstractService;
@@ -38,6 +40,9 @@ public class UserService extends AbstractService<UserRepository, UserMapper>
     }
 
     public List<ChatDto> getUserChat(Long id){
-        return chatMapper.toDto(repository.getChatByUserId(id));
+        List<Chat> chatByUserId = repository.getChatByUserId(id);
+        if(chatByUserId.isEmpty())
+            throw new NotFoundException("No chat found");
+        return chatMapper.toDto(chatByUserId);
     }
 }

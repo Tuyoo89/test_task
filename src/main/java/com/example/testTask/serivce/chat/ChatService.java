@@ -6,6 +6,7 @@ import com.example.testTask.dto.message.MessageDto;
 import com.example.testTask.entity.chat.Chat;
 import com.example.testTask.entity.message.Message;
 import com.example.testTask.entity.user.User;
+import com.example.testTask.exception.custom_exception.NotFoundException;
 import com.example.testTask.mapper.chat.ChatMapper;
 import com.example.testTask.mapper.message.MessageMapper;
 import com.example.testTask.serivce.base.AbstractService;
@@ -25,6 +26,8 @@ public class ChatService extends AbstractService<ChatRepository, ChatMapper> {
 
     public Long createUsersChat(ChatCreateDto chatCreateDto){
         List<User> userList = repository.getUserListById(chatCreateDto.getUsers());
+        if(userList.isEmpty())
+            throw new NotFoundException("User or users not found");
         Chat chat = mapper.toEntity(chatCreateDto);
         chat.setUsers(userList);
         return repository.save(chat).getId();
@@ -32,6 +35,8 @@ public class ChatService extends AbstractService<ChatRepository, ChatMapper> {
 
     public List<MessageDto> getChatMessages(Long id) {
         List<Message> chatMessages = repository.getChatMessages(id);
+        if(chatMessages.isEmpty())
+            throw new NotFoundException("No message found");
         return messageMapper.toDto(chatMessages);
     }
 }
